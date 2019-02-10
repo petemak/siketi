@@ -1,5 +1,6 @@
 (ns siketi.storage-test
   (:require [siketi.storage :refer :all]
+            [siketi.storage.mem-storage :as ms]
             [clojure.test :refer :all]))
 
 
@@ -30,7 +31,7 @@
     (testing "set-state: can change the state of the task"
       (let [task (change-task-state strg id "CLOSED")]
         (is (= (:id task) id))
-        (is (= (:status task) "CLOSED"))))
+        (is (= (:state task) "CLOSED"))))
 
 
     (testing "retrieve-task: can return as task"
@@ -61,3 +62,9 @@
         (testing "that the storage is empty after removal" 
           (let [tasks (retrieve-tasks strg)] 
             (is (empty? tasks))))))))
+
+
+
+(deftest mem-storage-test
+  (let [stg (ms/mem-store)]
+    (valid-storage? stg)))

@@ -13,6 +13,6 @@
   (retrieve-tasks [this]
     "Returns a list of all tasks")
   (remove-task [this id]
-    "Deletes the task with the give id")
+    "Deletes the task with the give id and returns the deleted task")
   (clear-tasks [this]
     "Deletes all tasks in the storage"))
